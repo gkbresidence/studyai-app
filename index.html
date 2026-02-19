@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>StudyAI – Learn Smarter, Score Higher</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- SPLASH SCREEN -->
+<div id="splash-screen" class="splash">
+  <div class="splash-logo">
+    <div class="splash-icon">🎓</div>
+    <h1 class="splash-title">StudyAI</h1>
+    <p class="splash-tagline">Learn Smarter. Score Higher.</p>
+  </div>
+  <div class="splash-loader"><div class="loader-bar"></div></div>
+</div>
+
+<!-- ONBOARDING -->
+<div id="onboarding" class="screen hidden">
+  <div class="onboard-slides">
+    <div class="onboard-slide active" data-slide="0">
+      <div class="onboard-illustration">🤖</div>
+      <h2>AI-Powered Homework Help</h2>
+      <p>Snap a photo or type your question. Get step-by-step solutions instantly in Math, Physics, Chemistry & more.</p>
+    </div>
+    <div class="onboard-slide" data-slide="1">
+      <div class="onboard-illustration">📅</div>
+      <h2>Personalized Study Plans</h2>
+      <p>Tell us your exams and goals. We build a daily plan, send reminders, and track your progress automatically.</p>
+    </div>
+    <div class="onboard-slide" data-slide="2">
+      <div class="onboard-illustration">🏆</div>
+      <h2>Compete & Win</h2>
+      <p>Earn XP, unlock badges, climb leaderboards, and challenge friends. Learning has never been this fun.</p>
+    </div>
+  </div>
+  <div class="onboard-dots">
+    <span class="dot active" data-dot="0"></span>
+    <span class="dot" data-dot="1"></span>
+    <span class="dot" data-dot="2"></span>
+  </div>
+  <div class="onboard-actions">
+    <button class="btn-next" id="onboard-next">Next</button>
+    <button class="btn-skip" id="onboard-skip">Skip</button>
+  </div>
+</div>
+
+<!-- AUTH SCREEN -->
+<div id="auth-screen" class="screen hidden">
+  <div class="auth-container">
+    <div class="auth-logo">🎓 <span>StudyAI</span></div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Sign In</button>
+      <button class="auth-tab" data-tab="register">Sign Up</button>
+    </div>
+    <div id="login-form" class="auth-form">
+      <input type="email" placeholder="Email address" class="auth-input" id="login-email" />
+      <input type="password" placeholder="Password" class="auth-input" id="login-password" />
+      <button class="btn-primary" id="btn-login">Sign In</button>
+      <div class="auth-divider"><span>or continue with</span></div>
+      <div class="social-logins">
+        <button class="social-btn"><i class="fab fa-google"></i> Google</button>
+        <button class="social-btn"><i class="fab fa-apple"></i> Apple</button>
+      </div>
+    </div>
+    <div id="register-form" class="auth-form hidden">
+      <input type="text" placeholder="Full name" class="auth-input" id="reg-name" />
+      <input type="email" placeholder="Email address" class="auth-input" id="reg-email" />
+      <input type="password" placeholder="Create password" class="auth-input" id="reg-password" />
+      <select class="auth-input" id="reg-level">
+        <option value="">Select your level</option>
+        <option value="high-school">High School</option>
+        <option value="college">College / University</option>
+      </select>
+      <button class="btn-primary" id="btn-register">Create Account</button>
+    </div>
+    <p class="auth-terms">By continuing, you agree to our <a href="#">Terms</a> & <a href="#">Privacy Policy</a></p>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app" class="screen hidden">
+  <header class="top-bar">
+    <div class="top-bar-left">
+      <div class="user-avatar" id="nav-avatar">A</div>
+      <div class="user-greeting">
+        <span class="greeting-text">Hey, <strong id="nav-username">Alex</strong>!</span>
+        <div class="xp-mini"><i class="fas fa-star"></i> <span id="nav-xp">1,240</span> XP</div>
+      </div>
+    </div>
+    <div class="top-bar-right">
+      <div class="streak-badge"><i class="fas fa-fire"></i> <span id="nav-streak">7</span></div>
+      <button class="icon-btn" id="btn-premium-badge" title="Go Premium">
+        <span class="crown-icon" id="premium-indicator">👑</span>
+      </button>
+      <button class="icon-btn" id="btn-notifications"><i class="fas fa-bell"></i><span class="notif-dot"></span></button>
+    </div>
+  </header>
+  <main class="page-content" id="page-content"></main>
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-page="home"><i class="fas fa-home"></i><span>Home</span></button>
+    <button class="nav-item" data-page="solver"><i class="fas fa-camera"></i><span>Solve</span></button>
+    <button class="nav-item" data-page="plans"><i class="fas fa-calendar-check"></i><span>Plans</span></button>
+    <button class="nav-item" data-page="leaderboard"><i class="fas fa-trophy"></i><span>Rank</span></button>
+    <button class="nav-item" data-page="profile"><i class="fas fa-user"></i><span>Me</span></button>
+  </nav>
+</div>
+
+<!-- PAYWALL MODAL -->
+<div id="paywall-modal" class="modal-overlay hidden">
+  <div class="modal-card paywall-card">
+    <button class="modal-close" id="paywall-close"><i class="fas fa-times"></i></button>
+    <div class="paywall-hero">👑</div>
+    <h2>Go Premium</h2>
+    <p class="paywall-sub">Unlock everything and supercharge your grades</p>
+    <ul class="paywall-features">
+      <li><i class="fas fa-check-circle"></i> Unlimited AI solutions (no daily cap)</li>
+      <li><i class="fas fa-check-circle"></i> Full personalized study plan + reminders</li>
+      <li><i class="fas fa-check-circle"></i> Exclusive mock exams & audio summaries</li>
+      <li><i class="fas fa-check-circle"></i> VIP badge + top leaderboard ranking</li>
+      <li><i class="fas fa-check-circle"></i> Instant urgent problem solver</li>
+      <li><i class="fas fa-check-circle"></i> Exam-specific packs (Bac, SAT, etc.)</li>
+    </ul>
+    <div class="paywall-plans">
+      <div class="plan-option selected" data-plan="monthly">
+        <div class="plan-label">Monthly</div>
+        <div class="plan-price">$4.99<span>/mo</span></div>
+        <div class="plan-badge">Most Popular</div>
+      </div>
+      <div class="plan-option" data-plan="yearly">
+        <div class="plan-label">Yearly</div>
+        <div class="plan-price">$2.99<span>/mo</span></div>
+        <div class="plan-badge">Save 40%</div>
+      </div>
+    </div>
+    <button class="btn-primary paywall-cta" id="btn-subscribe">Start 3-Day Free Trial</button>
+    <p class="paywall-disclaimer">Cancel anytime. No charge during trial.</p>
+  </div>
+</div>
+
+<!-- NOTIFICATION PANEL -->
+<div id="notif-panel" class="side-panel hidden">
+  <div class="panel-header">
+    <h3>Notifications</h3>
+    <button class="panel-close" id="notif-close"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="notif-list" id="notif-list"></div>
+</div>
+
+<!-- AD BANNER -->
+<div id="ad-banner" class="ad-banner hidden">
+  <span class="ad-label">Ad</span>
+  <span class="ad-text">📚 Khan Academy – Free learning for everyone</span>
+  <button class="ad-close" id="ad-close-btn"><i class="fas fa-times"></i></button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
